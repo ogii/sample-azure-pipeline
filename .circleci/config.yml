@@ -2,15 +2,16 @@ version: 2.1
 
 jobs:
   build:
-    machine: true
+    macos:
+      xcode: 14.2.0
     steps:
       - checkout
       - run:
-          name: 'Check ubuntu version'
-          command: cat /etc/os-release
+          name: 'Check macOS version'
+          command: sw_vers
       - run:
           name: Download 500mb file
           command: curl http://ipv4.download.thinkbroadband.com/512MB.zip --output 512MB.zip
       - run:
           name: Create 1G file
-          command: fallocate -l 1G testfile.txt 
+          command: mkfile -n 1g ~/Desktop/LargeTestFile
