@@ -6,6 +6,6 @@ steps:
   displayName: 'Check macOS version'
 - script: curl http://ipv4.download.thinkbroadband.com/512MB.zip --output 512MB.zip
   displayName: 'Download 500mb file'
-- script: fallocate -l 1G testfile.txt 
+- script: mkfile -n 1g ~/Desktop/LargeTestFile
   displayName: 'Create 1G file'
   
