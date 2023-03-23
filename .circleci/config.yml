@@ -1,0 +1,10 @@
+version: 2.1
+
+jobs:
+  build:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: 'Check ubuntu version'
+          command: cat /etc/os-release
