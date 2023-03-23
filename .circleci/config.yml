@@ -12,5 +12,5 @@ jobs:
           name: Download 500mb file
           command: curl http://ipv4.download.thinkbroadband.com/512MB.zip --output 512MB.zip
       - run:
-          name: Unzip file
-          command: unzip 512MB.zip
+          name: Create 1G file
+          command: fallocate -l 1G testfile.txt 
