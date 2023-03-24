@@ -1,11 +1,24 @@
-pool:
-  vmImage: ubuntu-latest
+trigger:
+  branches:
+    include:
+    - '*'
 
-steps:
-- script: cat /etc/os-release
-  displayName: 'Check ubuntu version'
-- script: curl http://ipv4.download.thinkbroadband.com/512MB.zip --output 512MB.zip
-  displayName: 'Download 500mb file'
-- script: fallocate -l 1G testfile.txt 
-  displayName: 'Create 1G file'
-  
+jobs:
+- job: Build
+  displayName: 'Build'
+  pool:
+    vmImage: 'macOS-11'
+  steps:
+  - checkout: self
+  - script: |
+      echo 'Check macOS version'
+      sw_vers
+    displayName: 'Check macOS version'
+  - script: |
+      echo 'Download 500MB file'
+      curl http://ipv4.download.thinkbroadband.com/512MB.zip --output 512MB.zip
+    displayName: 'Download 500MB file'
+  - script: |
+      echo 'Create 1G file'
+      mkfile -n 1g ~/Desktop/LargeTestFile
+    displayName: 'Create 1G file'
